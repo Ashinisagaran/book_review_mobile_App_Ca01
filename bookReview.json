@@ -1,0 +1,18 @@
+[
+  {
+    "id": 3810583630764420084,
+    "bookTitle": "Harry Potter",
+    "review": "It was adventourous",
+    "rating": 5,
+    "genre": "Fantasy",
+    "stageOfReading": "3"
+  },
+  {
+    "id": 9064661527275866992,
+    "bookTitle": "Harry Potter",
+    "review": "It was the best",
+    "rating": 0,
+    "genre": "Fantasy",
+    "stageOfReading": "2"
+  }
+]
