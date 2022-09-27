@@ -102,8 +102,8 @@ class BookReviewController {
     fun rate() {
 
         bookReView.listBooks(bookReviews)
-        val searchId = bookReView.getId()
-        val aBookReview = search(searchId)
+        val searchName = bookReView.getName()
+        val aBookReview = searchName(searchName)
 
         if(aBookReview != null) {
             if(bookReView.addRatingForBookReview(aBookReview)) {
@@ -119,9 +119,11 @@ class BookReviewController {
 
     }
 
-    fun sortRating() {
-
-    }
+//    fun sortRating() {
+//
+//
+//
+//    }
 
     fun review() {
 
@@ -158,20 +160,20 @@ class BookReviewController {
     }
 
     fun searchBook() { //needed for menu
-        val aBookReview = search(bookReView.getId())!!
+        val aBookReview = searchName(bookReView.getName())!!
         bookReView.showBookReview(aBookReview)
     }
 
 
-    fun search(name: String) : BookReviewModel? {
-        val foundBookReview = bookReviews.findOne(name)
+    fun searchName(name: String) : BookReviewModel? {
+        val foundBookReview = bookReviews.findOneByName(name)
         return foundBookReview
     }
 
-//    fun search(id: Long) : BookReviewModel? {
-//        val foundPlacemark = bookReviews.findOne(id)
-//        return foundPlacemark
-//    }
+    fun search(id: Long) : BookReviewModel? {
+        val foundPlacemark = bookReviews.findOne(id)
+        return foundPlacemark
+    }
 
     fun dummyData() {
         bookReviews.create(BookReviewModel(bookTitle = "New York New York", review = "So Good They Named It Twice"))

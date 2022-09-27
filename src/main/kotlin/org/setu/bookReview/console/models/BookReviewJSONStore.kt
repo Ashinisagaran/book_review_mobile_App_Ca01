@@ -32,18 +32,22 @@ class BookReviewJSONStore : BookReviewStore {
         return bookReviews
     }
 
-    override fun findOne(name: String) : BookReviewModel? {
+    override fun findOneByName(name: String) : BookReviewModel? {
         var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.bookTitle == name }
         return foundBookReview
     }
 
-//    override fun findOne(id: Long) : BookReviewModel? {
-//        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.id == id }
-//        return foundBookReview
-//    }
+    override fun findOne(id: Long) : BookReviewModel? {
+        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.id == id }
+        return foundBookReview
+    }
 
     override fun filterRating(rating: Int) : List<BookReviewModel> {
-        return bookReviews.filter { p -> p.rating == rating}
+        return bookReviews.filter { p -> p.rating >= rating}
+    }
+
+    override fun sortRating() : List<BookReviewModel> {
+        return bookReviews.sortedByDescending { p -> p.rating }
     }
 
 //    override fun findOneByName(name: String) : BookReviewModel? {
@@ -58,7 +62,7 @@ class BookReviewJSONStore : BookReviewStore {
     }
 
     override fun update(bookReview: BookReviewModel) {
-        var foundBookReview = findOne(bookReview.bookTitle!!)
+        var foundBookReview = findOneByName(bookReview.bookTitle!!)
         if (foundBookReview != null) {
             foundBookReview.bookTitle = bookReview.bookTitle
             foundBookReview.genre = bookReview.genre
@@ -69,7 +73,7 @@ class BookReviewJSONStore : BookReviewStore {
     }
 
     override fun rate(bookReview: BookReviewModel) {
-        var foundBookReview = findOne(bookReview.bookTitle!!)
+        var foundBookReview = findOneByName(bookReview.bookTitle!!)
         if (foundBookReview != null) {
             foundBookReview.bookTitle = bookReview.bookTitle
             foundBookReview.rating = bookReview.rating
@@ -78,7 +82,7 @@ class BookReviewJSONStore : BookReviewStore {
     }
 
     override fun review(bookReview: BookReviewModel) {
-        var foundBookReview = findOne(bookReview.bookTitle!!)
+        var foundBookReview = findOneByName(bookReview.bookTitle!!)
         if (foundBookReview != null) {
             foundBookReview.bookTitle = bookReview.bookTitle
             foundBookReview.review = bookReview.review
