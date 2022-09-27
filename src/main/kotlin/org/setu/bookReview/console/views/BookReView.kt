@@ -15,10 +15,12 @@ class BookReView {
         println("MAIN MENU")
         println(" 1. Add Books")
         println(" 2. Update Books")
-//        println(" 4. Update Reviews") // only update when they have submitted "currently reading" or "read"
-        println(" 3. Top Rated Books") //for now just rate
+        println(" 4. Add Rating") //for now just rate
+//        println(" 3. Top Rated Books") //returns in descending order of the rate
         println(" 4. Add Review")
-        println(" 5. All Genre")
+//        println(" 4. Update Reviews") // only update when they have submitted "currently reading" or "read"
+        println(" 5. Bookshelf")
+//        println(" 5. All Genre")
         println(" 6. Search Book")
         println(" 7. Delete Books")
         println("-1. Exit")
@@ -33,20 +35,30 @@ class BookReView {
     }
 
     fun listBooks(bookReviews : BookReviewJSONStore) {
-        println("All Books")
+        println("Books:")
         println()
-        bookReviews.logAll()
-        println()
+        var allBooks = bookReviews.findAll()
+        //print the list in a loop
+        for(book in allBooks){
+            println("Book ID: ${book.id}")
+            println("Book Title: ${book.bookTitle}")
+            println("Genre: ${book.genre}")
+            println("Stage of Reading: ${book.stageOfReading}")
+            println("Rating: ${book.rating}")
+            println("Review: ${book.review}")
+            println()
+        }
+        println(allBooks)
     }
 
-    fun showBookReview(bookReview : BookReviewModel) {
+    fun showBook(bookReview : BookReviewModel) {
         if(bookReview != null)
             println("Book Details [ $bookReview ]")
         else
             println("Book Not Found...")
     }
 
-    fun addBookReviewData(bookReview : BookReviewModel) : Boolean {
+    fun addBookData(bookReview : BookReviewModel) : Boolean { //
 
         println()
         print("Enter the book name : ")
@@ -68,7 +80,7 @@ class BookReView {
         return bookReview.bookTitle.isNotEmpty() && bookReview.review.isNotEmpty()
     }
 
-    fun updateBookReviewData(bookReview : BookReviewModel) : Boolean {
+    fun updateBookData(bookReview : BookReviewModel) : Boolean {
 
         val tempBookTitle: String?
         val tempGenre: String?
@@ -103,7 +115,7 @@ class BookReView {
         return false
     }
 
-    fun addRatingForBookReview(bookReview : BookReviewModel) : Boolean {
+    fun addRatingForBook(bookReview : BookReviewModel) : Boolean {
 
         var option : String?
         var tempRating: Int

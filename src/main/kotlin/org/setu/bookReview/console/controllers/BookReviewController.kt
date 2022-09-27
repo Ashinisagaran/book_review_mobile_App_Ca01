@@ -47,7 +47,7 @@ class BookReviewController {
         val aBookReview = BookReviewModel()
 
         if(aBookReview != null) {
-            if (bookReView.addBookReviewData(aBookReview)) {
+            if (bookReView.addBookData(aBookReview)) {
                 bookReviews.create(aBookReview)
 
                 logger.info("Book Added : [ $aBookReview ]")
@@ -69,9 +69,9 @@ class BookReviewController {
         val aBookReview = search(searchId)
 
         if(aBookReview != null) {
-            if(bookReView.updateBookReviewData(aBookReview)) {
+            if(bookReView.updateBookData(aBookReview)) {
                 bookReviews.update(aBookReview)
-                bookReView.showBookReview(aBookReview)
+                bookReView.showBook(aBookReview)
                 logger.info("Book Review Updated : [ $aBookReview ]")
             }
             else
@@ -106,9 +106,9 @@ class BookReviewController {
         val aBookReview = searchName(searchName)
 
         if(aBookReview != null) {
-            if(bookReView.addRatingForBookReview(aBookReview)) {
+            if(bookReView.addRatingForBook(aBookReview)) {
                 bookReviews.rate(aBookReview)
-                bookReView.showBookReview(aBookReview)
+                bookReView.showBook(aBookReview)
                 logger.info("Your rated Book : [ $aBookReview ]")
             }
             else
@@ -119,11 +119,11 @@ class BookReviewController {
 
     }
 
-//    fun sortRating() {
-//
-//
-//
-//    }
+    fun sortRating() {
+
+
+
+    }
 
     fun review() {
 
@@ -134,7 +134,7 @@ class BookReviewController {
         if(aBookReview != null) {
             if(bookReView.addReviewData(aBookReview)) {
                 bookReviews.review(aBookReview)
-                bookReView.showBookReview(aBookReview)
+                bookReView.showBook(aBookReview)
                 logger.info("Your Book Review : [ $aBookReview ]")
             }
             else
@@ -161,7 +161,7 @@ class BookReviewController {
 
     fun searchBook() { //needed for menu
         val aBookReview = searchName(bookReView.getName())!!
-        bookReView.showBookReview(aBookReview)
+        bookReView.showBook(aBookReview)
     }
 
 
