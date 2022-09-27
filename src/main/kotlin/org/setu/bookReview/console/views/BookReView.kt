@@ -15,14 +15,14 @@ class BookReView {
         println("MAIN MENU")
         println(" 1. Add Books")
         println(" 2. Update Books")
-        println(" 4. Add Rating") //for now just rate
-//        println(" 3. Top Rated Books") //returns in descending order of the rate
-        println(" 4. Add Review")
+        println(" 3. Add Rating") //for now just rate
+        println(" 4. Top Rated Books") //returns in descending order of the rate
+        println(" 5. Add Review")
 //        println(" 4. Update Reviews") // only update when they have submitted "currently reading" or "read"
-        println(" 5. Bookshelf")
+        println(" 6. Bookshelf")
 //        println(" 5. All Genre")
-        println(" 6. Search Book")
-        println(" 7. Delete Books")
+        println(" 7. Search Book")
+        println(" 8. Delete Books")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -77,7 +77,7 @@ class BookReView {
 //        print("Please leave a review for the book : ")
 //        bookReview.review = readLine()!!
 
-        return bookReview.bookTitle.isNotEmpty() && bookReview.review.isNotEmpty()
+        return bookReview.bookTitle.isNotEmpty() && bookReview.genre.isNotEmpty() && bookReview.stageOfReading.isNotEmpty()
     }
 
     fun updateBookData(bookReview : BookReviewModel) : Boolean {

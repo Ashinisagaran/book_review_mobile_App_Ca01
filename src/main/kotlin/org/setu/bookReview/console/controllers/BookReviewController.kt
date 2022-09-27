@@ -28,10 +28,11 @@ class BookReviewController {
                 1 -> addBook()
                 2 -> updateBook()
                 3 -> rate()
-                4 -> review()
-                5 -> bookShelves()
-                6 -> searchBook()
-                7 -> deleteBook()
+                4 -> sortRating(bookReviews)
+                5 -> review()
+                6 -> bookShelves()
+                7 -> searchBook()
+                8 -> deleteBook()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -119,8 +120,18 @@ class BookReviewController {
 
     }
 
-    fun sortRating() {
+    fun sortRating(bookReviews : BookReviewJSONStore) {
 
+            println("Top Rated Books:")
+            println()
+            var sortRate = bookReviews.sortRating()
+            //print the list in a loop
+            for(topRated in sortRate){
+                println("Book Title: ${topRated.bookTitle}")
+                println("Rating: ${topRated.rating}")
+                println()
+            }
+            println(sortRate)
 
 
     }
@@ -128,8 +139,8 @@ class BookReviewController {
     fun review() {
 
         bookReView.listBooks(bookReviews)
-        val searchId = bookReView.getId()
-        val aBookReview = search(searchId)
+        val searchName = bookReView.getName()
+        val aBookReview = searchName(searchName)
 
         if(aBookReview != null) {
             if(bookReView.addReviewData(aBookReview)) {
