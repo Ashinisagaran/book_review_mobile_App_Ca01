@@ -18,9 +18,25 @@
   {
     "id": 4913247637778915113,
     "bookTitle": "Percy Jackson",
-    "review": "Annabeth was girl boss lady",
+    "review": "I wanna be like Annabeth when I grow up",
     "rating": 5,
     "genre": "Adventure",
+    "stageOfReading": "3"
+  },
+  {
+    "id": -765323171114893228,
+    "bookTitle": "Gregory the Overlander",
+    "review": "Can\u0027t figure out if i feel sorry for Bane",
+    "rating": 5,
+    "genre": "Fantasy",
+    "stageOfReading": "2"
+  },
+  {
+    "id": 333554703400892905,
+    "bookTitle": "A Court of Thorns and Roses",
+    "review": "",
+    "rating": 0,
+    "genre": "Romance",
     "stageOfReading": "3"
   }
 ]

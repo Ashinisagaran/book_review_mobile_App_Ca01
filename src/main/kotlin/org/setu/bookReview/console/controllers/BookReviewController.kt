@@ -28,8 +28,8 @@ class BookReviewController {
                 1 -> addBook()
                 2 -> updateBook()
                 3 -> rate()
-                4 -> sortRating(bookReviews)
-                5 -> review()
+                4 -> review()
+                5 -> sortRating(bookReviews)
                 6 -> bookShelves()
                 7 -> searchBook()
                 8 -> deleteBook()
@@ -50,7 +50,7 @@ class BookReviewController {
         if(aBookReview != null) {
             if (bookReView.addBookData(aBookReview)) {
                 bookReviews.create(aBookReview)
-
+                bookReView.viewAddedBook(aBookReview)
                 logger.info("Book Added : [ $aBookReview ]")
             }
             else
@@ -66,13 +66,13 @@ class BookReviewController {
 
     fun updateBook() {
         bookReView.listBooks(bookReviews)
-        val searchId = bookReView.getId()
-        val aBookReview = search(searchId)
+        val searchName = bookReView.getName()
+        val aBookReview = searchName(searchName)
 
         if(aBookReview != null) {
             if(bookReView.updateBookData(aBookReview)) {
                 bookReviews.update(aBookReview)
-                bookReView.showBook(aBookReview)
+                bookReView.viewUpdatedBook(aBookReview)
                 logger.info("Book Review Updated : [ $aBookReview ]")
             }
             else
@@ -109,7 +109,7 @@ class BookReviewController {
         if(aBookReview != null) {
             if(bookReView.addRatingForBook(aBookReview)) {
                 bookReviews.rate(aBookReview)
-                bookReView.showBook(aBookReview)
+                bookReView.viewRating(aBookReview)
                 logger.info("Your rated Book : [ $aBookReview ]")
             }
             else
@@ -145,7 +145,7 @@ class BookReviewController {
         if(aBookReview != null) {
             if(bookReView.addReviewData(aBookReview)) {
                 bookReviews.review(aBookReview)
-                bookReView.showBook(aBookReview)
+                bookReView.viewReview(aBookReview)
                 logger.info("Your Book Review : [ $aBookReview ]")
             }
             else
@@ -158,8 +158,8 @@ class BookReviewController {
 
     fun deleteBook() {
         bookReView.listBooks(bookReviews)
-        var searchId = bookReView.getId()
-        val aBookReview = search(searchId)
+        var searchName = bookReView.getName()
+        val aBookReview = searchName(searchName)
 
         if(aBookReview != null) {
             bookReviews.delete(aBookReview)
