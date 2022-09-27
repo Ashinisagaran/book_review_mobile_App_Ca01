@@ -37,10 +37,10 @@ class BookReviewJSONStore : BookReviewStore {
         return foundBookReview
     }
 
-    override fun findOneByName(name: String) : BookReviewModel? {
-        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.bookTitle == name }
-        return foundBookReview
-    }
+//    override fun findOneByName(name: String) : BookReviewModel? {
+//        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.bookTitle == name }
+//        return foundBookReview
+//    }
 
     override fun create(bookReview: BookReviewModel) {
         bookReview.id = generateRandomId()

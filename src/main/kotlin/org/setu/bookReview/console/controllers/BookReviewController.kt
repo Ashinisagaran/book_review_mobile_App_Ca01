@@ -126,7 +126,7 @@ class BookReviewController {
         val aBookReview = search(searchId)
 
         if(aBookReview != null) {
-            if(bookReView.addRatingForBookReview(aBookReview)) {
+            if(bookReView.addReviewData(aBookReview)) {
                 bookReviews.review(aBookReview)
                 bookReView.showBookReview(aBookReview)
                 logger.info("Your Book Review : [ $aBookReview ]")

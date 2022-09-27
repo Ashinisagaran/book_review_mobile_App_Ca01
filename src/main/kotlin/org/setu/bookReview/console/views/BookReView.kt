@@ -14,11 +14,10 @@ class BookReView {
         println("Welcome to Book Review App")
         println("MAIN MENU")
         println(" 1. Add Books")
-//        println(" 2. Add Review") // only add when they have submitted "currently reading" or "read"
         println(" 2. Update Books")
 //        println(" 4. Update Reviews") // only update when they have submitted "currently reading" or "read"
         println(" 3. Top Rated Books") //for now just rate
-        println(" 4. Add your review")
+        println(" 4. Add Review")
         println(" 5. All Genre")
         println(" 6. Search Book")
         println(" 7. Delete Books")
@@ -63,8 +62,8 @@ class BookReView {
         println(" 4. Haven't Considered")
         bookReview.stageOfReading = readLine()!!
 
-        print("Please leave a review for the book : ")
-        bookReview.review = readLine()!!
+//        print("Please leave a review for the book : ")
+//        bookReview.review = readLine()!!
 
         return bookReview.bookTitle.isNotEmpty() && bookReview.review.isNotEmpty()
     }
@@ -74,7 +73,7 @@ class BookReView {
         val tempBookTitle: String?
         val tempGenre: String?
         val tempStageOfReading: String?
-        val tempReview: String?
+//        val tempReview: String?
 
         if (bookReview != null) {
             print("Enter the book name : ")
@@ -90,14 +89,14 @@ class BookReView {
             println(" 4. Haven't Considered")
             tempStageOfReading = readLine()!!
 
-            print("Please leave a review for the book : ")
-            tempReview = readLine()!!
+//            print("Please leave a review for the book : ")
+//            tempReview = readLine()!!
 
-            if (!tempBookTitle.isNullOrEmpty() && !tempGenre.isNullOrEmpty() && !tempStageOfReading.isNullOrEmpty() && !tempReview.isNullOrEmpty()) {
+            if (!tempBookTitle.isNullOrEmpty() && !tempGenre.isNullOrEmpty() && !tempStageOfReading.isNullOrEmpty()) {
                 bookReview.bookTitle = tempBookTitle
                 bookReview.genre = tempGenre
                 bookReview.stageOfReading = tempStageOfReading
-                bookReview.review = tempReview
+//                bookReview.review = tempReview
                 return true
             }
         }
