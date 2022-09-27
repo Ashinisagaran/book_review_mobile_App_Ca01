@@ -119,6 +119,10 @@ class BookReviewController {
 
     }
 
+    fun sortRating() {
+
+    }
+
     fun review() {
 
         bookReView.listBooks(bookReviews)
@@ -159,10 +163,15 @@ class BookReviewController {
     }
 
 
-    fun search(id: Long) : BookReviewModel? {
-        val foundBookReview = bookReviews.findOne(id)
+    fun search(name: String) : BookReviewModel? {
+        val foundBookReview = bookReviews.findOne(name)
         return foundBookReview
     }
+
+//    fun search(id: Long) : BookReviewModel? {
+//        val foundPlacemark = bookReviews.findOne(id)
+//        return foundPlacemark
+//    }
 
     fun dummyData() {
         bookReviews.create(BookReviewModel(bookTitle = "New York New York", review = "So Good They Named It Twice"))

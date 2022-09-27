@@ -1,7 +1,7 @@
 package org.setu.bookReview.console.views
 
 import org.setu.bookReview.console.models.BookReviewJSONStore
-import org.setu.bookReview.console.models.BookReviewMemStore
+//import org.setu.bookReview.console.models.BookReviewMemStore
 import org.setu.bookReview.console.models.BookReviewModel
 
 class BookReView {
@@ -130,31 +130,22 @@ class BookReView {
         return bookReview.review.isNotEmpty()
     }
 
-//    fun updateReviewData(bookReview : BookReviewModel)) : Boolean {
-//
-//        val tempReview: String?
-//
-//        if (bookReview != null) {
-//            print("Please leave a updated review for the book : ")
-//            tempReview = readLine()!!
-//
-//            if (!tempReview.isNullOrEmpty()) {
-//                bookReview.review = tempReview
-//                return true
-//            }
-//        }
-//        return false
-//    }
-
     fun getId() : Long {
         var strId : String? // String to hold user input
         var searchId : Long // Long to hold converted id
-        print("Enter id to Search/Update : ")
+        print("Enter name of the book : ")
         strId = readLine()!!
         searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
             strId.toLong()
         else
             -9
         return searchId
+    }
+
+    fun getName() : String {
+        var strName : String? // String to hold user input
+        print("Enter name of the book : ")
+        strName = readLine()!!
+        return strName
     }
 }
