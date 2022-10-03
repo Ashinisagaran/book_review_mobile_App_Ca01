@@ -8,14 +8,6 @@
     "stageOfReading": "3"
   },
   {
-    "id": 9064661527275866992,
-    "bookTitle": "Harry Potter",
-    "review": "It was the best",
-    "rating": 0,
-    "genre": "Fantasy",
-    "stageOfReading": "2"
-  },
-  {
     "id": 4913247637778915113,
     "bookTitle": "Percy Jackson",
     "review": "I wanna be like Annabeth when I grow up",
@@ -34,9 +26,33 @@
   {
     "id": 333554703400892905,
     "bookTitle": "A Court of Thorns and Roses",
+    "review": "I didnt know Feyre was 19 and had to hunt for her family for food. So young....",
+    "rating": 3,
+    "genre": "Romance",
+    "stageOfReading": "3"
+  },
+  {
+    "id": -4003229665372039873,
+    "bookTitle": "rose",
     "review": "",
     "rating": 0,
-    "genre": "Romance",
+    "genre": "romance",
+    "stageOfReading": "2"
+  },
+  {
+    "id": -6453665110322446048,
+    "bookTitle": "Lord of Rings",
+    "review": "",
+    "rating": 1,
+    "genre": "Fantasy",
+    "stageOfReading": "1"
+  },
+  {
+    "id": 1650517855790237051,
+    "bookTitle": "Dune",
+    "review": "",
+    "rating": 0,
+    "genre": "Sci-Fi",
     "stageOfReading": "3"
   }
 ]

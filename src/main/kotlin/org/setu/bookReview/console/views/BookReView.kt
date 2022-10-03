@@ -81,7 +81,7 @@ class BookReView {
     }
 
     fun viewAddedBook(bookReview: BookReviewModel){
-        println("Your book added,  \n${bookReview.bookTitle}, \n${bookReview.genre}, \nStage of Reading: ${bookReview.stageOfReading}")
+        println("Your updated book,  \n Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading:${bookReview.stageOfReading}")
     }
 
     fun updateBookData(bookReview : BookReviewModel) : Boolean {
@@ -108,7 +108,6 @@ class BookReView {
                 bookReview.bookTitle = tempBookTitle
                 bookReview.genre = tempGenre
                 bookReview.stageOfReading = tempStageOfReading
-//                bookReview.review = tempReview
                 return true
             }
         }
@@ -116,7 +115,7 @@ class BookReView {
     }
 
     fun viewUpdatedBook(bookReview: BookReviewModel){
-        println("Your updated book,  \n${bookReview.bookTitle}, \n${bookReview.genre}, \nStage of Reading:${bookReview.stageOfReading}")
+        println("Your updated book,  \n Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading:${bookReview.stageOfReading}")
     }
 
     fun addRatingForBook(bookReview : BookReviewModel) : Boolean {
@@ -137,8 +136,40 @@ class BookReView {
         return true
     }
 
+//    fun updateReviewData(bookReview : BookReviewModel) : Boolean {
+//
+//        val tempBookTitle: String?
+//        val tempGenre: String?
+//        val tempStageOfReading: String?
+//
+//        if (bookReview != null) {
+//            print("Enter the book name to be updated: ")
+//            tempBookTitle = readLine()!!
+//
+//            print("Enter the genre of the book to be updated: ")
+//            tempGenre = readLine()!!
+//
+//            println("Select the stage of reading to be updated : ")
+//            println(" 1. Want to Read")
+//            println(" 2. Currently Reading")
+//            println(" 3. Read")
+//            println(" 4. Haven't Considered")
+//            tempStageOfReading = readLine()!!
+//
+//            if (!tempBookTitle.isNullOrEmpty() && !tempGenre.isNullOrEmpty() && !tempStageOfReading.isNullOrEmpty()) {
+//                bookReview.bookTitle = tempBookTitle
+//                bookReview.genre = tempGenre
+//                bookReview.stageOfReading = tempStageOfReading
+//                return true
+//            }
+//        }
+//        return false
+//    }
+
     fun viewRating(bookReview: BookReviewModel){
         println("Your review  \'${bookReview.rating}\' for \'${bookReview.bookTitle}\', has been added")
+        println()
+        println(" Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading: ${bookReview.stageOfReading}, \n Rating: ${bookReview.rating}")
     }
 
     fun addReviewData(bookReview : BookReviewModel) : Boolean {
@@ -152,13 +183,21 @@ class BookReView {
 
     fun viewReview(bookReview: BookReviewModel){
         println("Your review  \'${bookReview.review}\' for \'${bookReview.bookTitle}\', has been added")
+        println()
+        println(" Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading: ${bookReview.stageOfReading}, \n Rating: ${bookReview.rating}, \n Review: ${bookReview.review}")
+    }
+
+    fun viewSearchedBook(bookReview: BookReviewModel){
+        println()
+        println(" Book ID: ${bookReview.id} \n Book Title: ${bookReview.bookTitle} \n Genre: ${bookReview.genre} \n Stage of Reading: ${bookReview.stageOfReading} \n Rating: ${bookReview.rating} \n Review: ${bookReview.review}")
+        println()
     }
 
 
     fun getId() : Long {
         var strId : String? // String to hold user input
         var searchId : Long // Long to hold converted id
-        print("Enter name of the book : ")
+        print("Enter id of the book : ")
         strId = readLine()!!
         searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
             strId.toLong()

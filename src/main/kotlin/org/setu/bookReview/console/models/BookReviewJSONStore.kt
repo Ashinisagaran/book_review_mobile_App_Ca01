@@ -37,6 +37,10 @@ class BookReviewJSONStore : BookReviewStore {
         return foundBookReview
     }
 
+    //find name by any phrase in book title
+    //print the bookshelve in a table format
+
+
     override fun findOne(id: Long) : BookReviewModel? {
         var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.id == id }
         return foundBookReview
@@ -49,11 +53,6 @@ class BookReviewJSONStore : BookReviewStore {
     override fun sortRating() : List<BookReviewModel> {
         return bookReviews.sortedByDescending { p -> p.rating }
     }
-
-//    override fun findOneByName(name: String) : BookReviewModel? {
-//        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.bookTitle == name }
-//        return foundBookReview
-//    }
 
     override fun create(bookReview: BookReviewModel) {
         bookReview.id = generateRandomId()

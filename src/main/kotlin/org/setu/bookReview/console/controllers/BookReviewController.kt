@@ -120,6 +120,25 @@ class BookReviewController {
 
     }
 
+//    fun updateRate() {
+//        bookReView.listBooks(bookReviews)
+//        val searchName = bookReView.getName()
+//        val aBookReview = searchName(searchName)
+//
+//        if(aBookReview != null) {
+//            if(bookReView.updateBookData(aBookReview)) {
+//                bookReviews.update(aBookReview)
+//                bookReView.viewUpdatedBook(aBookReview)
+//                logger.info("Book Review Updated : [ $aBookReview ]")
+//            }
+//            else
+//                logger.info("Book Review Not Updated")
+//        }
+//        else
+//            println("Book Review Not Updated...")
+//    }
+
+
     fun sortRating(bookReviews : BookReviewJSONStore) {
 
             println("Top Rated Books:")
@@ -158,8 +177,8 @@ class BookReviewController {
 
     fun deleteBook() {
         bookReView.listBooks(bookReviews)
-        var searchName = bookReView.getName()
-        val aBookReview = searchName(searchName)
+        var searchId = bookReView.getId()
+        val aBookReview = search(searchId)
 
         if(aBookReview != null) {
             bookReviews.delete(aBookReview)
@@ -171,8 +190,10 @@ class BookReviewController {
     }
 
     fun searchBook() { //needed for menu
+        bookReView.listBooks(bookReviews)
         val aBookReview = searchName(bookReView.getName())!!
-        bookReView.showBook(aBookReview)
+        bookReView.viewSearchedBook(aBookReview)
+
     }
 
 
