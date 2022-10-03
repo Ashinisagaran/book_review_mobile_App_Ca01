@@ -54,5 +54,21 @@
     "rating": 0,
     "genre": "Sci-Fi",
     "stageOfReading": "3"
+  },
+  {
+    "id": 3040133450039428757,
+    "bookTitle": "Java",
+    "review": "Too Boring",
+    "rating": 1,
+    "genre": "Non-Fiction",
+    "stageOfReading": "2"
+  },
+  {
+    "id": -4253470189775093815,
+    "bookTitle": "Harry Potter and the Chamber of Secrets",
+    "review": "AWESOME!!!!!!",
+    "rating": 5,
+    "genre": "Fantasy",
+    "stageOfReading": "3"
   }
 ]

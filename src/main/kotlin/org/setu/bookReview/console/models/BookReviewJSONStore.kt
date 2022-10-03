@@ -28,7 +28,7 @@ class BookReviewJSONStore : BookReviewStore {
         }
     }
 
-    override fun findAll(): MutableList<BookReviewModel> {
+    override fun findAll(): List<BookReviewModel> {
         return bookReviews
     }
 
@@ -37,8 +37,12 @@ class BookReviewJSONStore : BookReviewStore {
         return foundBookReview
     }
 
-    //find name by any phrase in book title
-    //print the bookshelve in a table format
+    //able to display books that are in each stage
+    // look into delete book.... for now it just deletes using the id of the book
+
+    override fun findUsingSpecificName(name: String) : List<BookReviewModel> {
+        return bookReviews.filter { p -> p.bookTitle.contains(name) }
+    }
 
 
     override fun findOne(id: Long) : BookReviewModel? {

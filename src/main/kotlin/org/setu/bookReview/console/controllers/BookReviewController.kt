@@ -14,7 +14,7 @@ class BookReviewController {
     val logger = KotlinLogging.logger {}
 
     init {
-        logger.info { "Launching Book Review Console App" }
+//        logger.info { "Launching Book Review Console App" }
         println("Welcome to Book Review Kotlin App Version 1.0 by Ashini Sagaran")
     }
 
@@ -31,7 +31,7 @@ class BookReviewController {
                 4 -> review()
                 5 -> sortRating(bookReviews)
                 6 -> bookShelves()
-                7 -> searchBook()
+                7 -> searchSpecificBook()
                 8 -> deleteBook()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
@@ -39,7 +39,7 @@ class BookReviewController {
             }
             println()
         } while (input != -1)
-        logger.info { "Shutting Down Book Review Console App" }
+//        logger.info { "Shutting Down Book Review Console App" }
     }
 
     fun menu() :Int { return bookReView.menu() }
@@ -51,10 +51,10 @@ class BookReviewController {
             if (bookReView.addBookData(aBookReview)) {
                 bookReviews.create(aBookReview)
                 bookReView.viewAddedBook(aBookReview)
-                logger.info("Book Added : [ $aBookReview ]")
+//                logger.info("Successfully Added")
             }
-            else
-                logger.info("Book Not Added")
+//            else
+//                logger.info("Not Successfully Added")
         }
         else
             println("Book Not Added...")
@@ -73,10 +73,10 @@ class BookReviewController {
             if(bookReView.updateBookData(aBookReview)) {
                 bookReviews.update(aBookReview)
                 bookReView.viewUpdatedBook(aBookReview)
-                logger.info("Book Review Updated : [ $aBookReview ]")
+//                logger.info("Successfully Updated")
             }
-            else
-                logger.info("Book Review Not Updated")
+//            else
+//                logger.info("Not Successfully Updated")
         }
         else
             println("Book Review Not Updated...")
@@ -110,10 +110,10 @@ class BookReviewController {
             if(bookReView.addRatingForBook(aBookReview)) {
                 bookReviews.rate(aBookReview)
                 bookReView.viewRating(aBookReview)
-                logger.info("Your rated Book : [ $aBookReview ]")
+//                logger.info("Successfully Added Rating of Book")
             }
-            else
-                logger.info("Book Not Rated")
+//            else
+//                logger.info("Not Successfully Added Rating of Book")
         }
         else
             println("Book Not Rated...")
@@ -165,10 +165,10 @@ class BookReviewController {
             if(bookReView.addReviewData(aBookReview)) {
                 bookReviews.review(aBookReview)
                 bookReView.viewReview(aBookReview)
-                logger.info("Your Book Review : [ $aBookReview ]")
+//                logger.info("Successfully Added Review of Book")
             }
-            else
-                logger.info("Book Not Reviewed")
+//            else
+//                logger.info("Not Successfully Added Review of Book")
         }
         else
             println("Book Not Reviewed...")
@@ -193,12 +193,22 @@ class BookReviewController {
         bookReView.listBooks(bookReviews)
         val aBookReview = searchName(bookReView.getName())!!
         bookReView.viewSearchedBook(aBookReview)
+    }
 
+    fun searchSpecificBook() {
+        bookReView.listBooks(bookReviews)
+        val aBookReview = searchSpecificName(bookReView.getName())!!
+        bookReView.printTableBook(aBookReview)
     }
 
 
     fun searchName(name: String) : BookReviewModel? {
         val foundBookReview = bookReviews.findOneByName(name)
+        return foundBookReview
+    }
+
+    fun searchSpecificName(name: String) : List<BookReviewModel> {
+        val foundBookReview = bookReviews.findUsingSpecificName(name)
         return foundBookReview
     }
 

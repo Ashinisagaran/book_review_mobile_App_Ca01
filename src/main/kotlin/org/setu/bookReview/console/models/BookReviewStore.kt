@@ -4,6 +4,7 @@ interface BookReviewStore {
     fun findAll(): List<BookReviewModel>
 //    fun findOne(id: Long): BookReviewModel?
     fun findOneByName(name: String): BookReviewModel?
+    fun findUsingSpecificName(name: String): List<BookReviewModel>
     fun findOne(id: Long): BookReviewModel?
     fun filterRating(rating: Int) : List<BookReviewModel>
     fun sortRating () : List<BookReviewModel>
