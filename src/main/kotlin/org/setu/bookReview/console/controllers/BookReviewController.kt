@@ -29,7 +29,7 @@ class BookReviewController {
                 5 -> sortRating(bookReviews)
                 6 -> bookShelves()
                 7 -> stageOfReading()
-//                8 -> genre()
+                8 -> genre()
                 9 -> searchSpecificBook()
                 10 -> deleteBook()
                 -99 -> dummyData()
@@ -143,17 +143,25 @@ class BookReviewController {
     fun stageOfReading() {
         val theStage = bookReView.askStageOfReading()
         val aBookReview = searchStage(theStage)!!
-        bookReView.printStage(aBookReview, "The following is all the books at the requested stage: ${theStage}")
+        bookReView.printCategory(aBookReview, "The following is all the books at the requested stage: ${theStage}")
     }
 
-//    fun genre() {
-//        val aBookReview = searchGenre(bookReView.getName())!!
-//        bookReView.printTableBook(aBookReview)
-//    }
+    fun genre() {
+        bookReView.listGenre(bookReviews)
+        println()
+        val theGenre = bookReView.askGenre()
+        val aBookReview = searchGenre(theGenre)!!
+        bookReView.printCategory(aBookReview, "The following is all the books for the genre: ${theGenre}")
+    }
 
     fun searchStage(stage: String): List<BookReviewModel>{
        val foundStage = bookReviews.findStage(stage)
         return foundStage
+    }
+
+    fun searchGenre(genre: String): List<BookReviewModel>{
+        val foundGenre = bookReviews.findGenre(genre)
+        return foundGenre
     }
 
     fun searchSpecificBook() {

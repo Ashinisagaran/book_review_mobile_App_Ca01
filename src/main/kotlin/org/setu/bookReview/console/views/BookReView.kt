@@ -19,8 +19,9 @@ class BookReView {
         println(" 5. Top Rated Books") //returns in descending order of the rate
         println(" 6. Bookshelves")
         println(" 7. Search Books by Stage")
-        println(" 8. Search Book")
-        println(" 9. Delete Books")
+        println(" 8. Search by Genre")
+        println(" 9. Search Book")
+        println(" 10. Delete Books")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -70,7 +71,31 @@ class BookReView {
         }
     }
 
-    fun printStage(allBooks : List<BookReviewModel>, header :String){
+    fun viewBook(book: BookReviewModel) {
+        println()
+        println(
+            String.format(
+                "%10s %25s %25s %60s %25s %10s %25s %15s %25s %10s %25s %60s %20s",
+                "|",
+                "${book.id} ",
+                "|",
+                "${book.bookTitle}",
+                "|",
+                "${book.genre}",
+                "|",
+                "${book.stageOfReading}",
+                "|",
+                "${book.rating}",
+                "|",
+                "${book.review}",
+                "|"
+            )
+        )
+        println()
+    }
+
+
+    fun printCategory(allBooks : List<BookReviewModel>, header :String){
         println(header)
         printTableBook(allBooks)
     }
@@ -132,28 +157,10 @@ class BookReView {
         return convertStage(stageStore)
     }
 
-
-    fun viewBook(book: BookReviewModel) {
-        println()
-        println(
-            String.format(
-                "%10s %25s %25s %60s %25s %10s %25s %15s %25s %10s %25s %60s %20s",
-                "|",
-                "${book.id} ",
-                "|",
-                "${book.bookTitle}",
-                "|",
-                "${book.genre}",
-                "|",
-                "${book.stageOfReading}",
-                "|",
-                "${book.rating}",
-                "|",
-                "${book.review}",
-                "|"
-            )
-        )
-        println()
+    fun askGenre(): String{
+        println("Which genre of books would you like to see?")
+        var genreStore = readLine()!!
+        return genreStore
     }
 
     fun updateBookData(bookReview : BookReviewModel) : Boolean {
@@ -275,6 +282,47 @@ class BookReView {
             )
         )
         println()
+    }
+
+    fun printGenre(allBooks : List<BookReviewModel>) {
+        println(
+            String.format(
+                "%10s  %10s %25s",
+                "|",
+                "Genre",
+                "|"
+            )
+        )
+        println(
+            String.format(
+                "%s",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            )
+        )
+        for (book in allBooks) {
+            viewGenre(book)
+        }
+    }
+
+    fun viewGenre(bookReview: BookReviewModel){
+        println()
+        println(
+            String.format(
+                "%10s %10s %25s",
+                "|",
+                "${bookReview.genre}",
+                "|"
+            )
+        )
+        println()
+    }
+
+    fun listGenre(bookReviews : BookReviewJSONStore) {
+        println("Genres:")
+        println()
+        var allGenres = bookReviews.findAllGenres()
+        printGenre(allGenres)
+        println(allGenres)
     }
 
 

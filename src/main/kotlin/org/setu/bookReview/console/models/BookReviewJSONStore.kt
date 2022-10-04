@@ -32,6 +32,10 @@ class BookReviewJSONStore : BookReviewStore {
         return bookReviews
     }
 
+    override fun findAllGenres(): List<BookReviewModel> {
+        return bookReviews.distinctBy { it.genre }
+    }
+
     override fun findOneByName(name: String) : BookReviewModel? {
         var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.bookTitle == name }
         return foundBookReview
@@ -41,14 +45,21 @@ class BookReviewJSONStore : BookReviewStore {
         return bookReviews.filter { p -> p.stageOfReading == stage }
     }
 
+    override fun findGenre(genre: String) : List<BookReviewModel> {
+        return bookReviews.filter { p -> p.genre == genre }
+    }
 
     override fun findUsingSpecificName(name: String) : List<BookReviewModel> {
         return bookReviews.filter { p -> p.bookTitle.contains(name) }
     }
 
-
     override fun findOne(id: Long) : BookReviewModel? {
         var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.id == id }
+        return foundBookReview
+    }
+
+    override fun lookUpGenre(genre: String) : BookReviewModel? {
+        var foundBookReview: BookReviewModel? = bookReviews.find { p -> p.genre == genre }
         return foundBookReview
     }
 
