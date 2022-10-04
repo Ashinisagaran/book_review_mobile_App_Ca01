@@ -108,20 +108,17 @@ class BookReView {
         return bookReview.bookTitle.isNotEmpty() && bookReview.genre.isNotEmpty() && bookReview.stageOfReading.isNotEmpty()
     }
 
-    fun convertStage(stage:String):String{
-    if(stage=="1") return "Want to Read"
+    fun convertStage(stage:String) =
 
-    else if(stage=="2") return "Currently Reading"
+        when(stage) {
+            "1" -> "Want to Read"
+            "2" -> "Currently Reading"
+            "3" -> "Read"
+            "4" -> "Haven't Considered"
+            "5" -> "Nope"
+            else -> "Nope"
+        }
 
-    else if(stage=="3") return "Read"
-
-    else if(stage=="4") return "Haven't Considered"
-
-    else if(stage=="5") return "Nope"
-
-    else
-        return "Nope"
-    }
 
     fun askStageOfReading(): String {
         println("Which stage of reading would you like to see?")

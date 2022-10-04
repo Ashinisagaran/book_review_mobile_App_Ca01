@@ -29,8 +29,9 @@ class BookReviewController {
                 5 -> sortRating(bookReviews)
                 6 -> bookShelves()
                 7 -> stageOfReading()
-                8 -> searchSpecificBook()
-                9 -> deleteBook()
+//                8 -> genre()
+                9 -> searchSpecificBook()
+                10 -> deleteBook()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
@@ -145,7 +146,10 @@ class BookReviewController {
         bookReView.printStage(aBookReview, "The following is all the books at the requested stage: ${theStage}")
     }
 
-
+//    fun genre() {
+//        val aBookReview = searchGenre(bookReView.getName())!!
+//        bookReView.printTableBook(aBookReview)
+//    }
 
     fun searchStage(stage: String): List<BookReviewModel>{
        val foundStage = bookReviews.findStage(stage)
