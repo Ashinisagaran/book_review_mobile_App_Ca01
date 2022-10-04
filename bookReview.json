@@ -1,74 +1,90 @@
 [
   {
-    "id": 3810583630764420084,
+    "id": 1903987199279266133,
     "bookTitle": "Harry Potter",
     "review": "It was awesome",
     "rating": 4,
     "genre": "Fantasy",
-    "stageOfReading": "3"
+    "stageOfReading": "Read"
   },
   {
-    "id": 4913247637778915113,
+    "id": 1841135292624604036,
     "bookTitle": "Percy Jackson",
     "review": "I wanna be like Annabeth when I grow up",
     "rating": 5,
     "genre": "Adventure",
-    "stageOfReading": "3"
+    "stageOfReading": "Read"
   },
   {
-    "id": -765323171114893228,
+    "id": -5465798856762382916,
     "bookTitle": "Gregory the Overlander",
     "review": "Can\u0027t figure out if i feel sorry for Bane",
     "rating": 5,
     "genre": "Fantasy",
-    "stageOfReading": "2"
+    "stageOfReading": "Currently Reading"
   },
   {
-    "id": 333554703400892905,
+    "id": 3887642931879786388,
     "bookTitle": "A Court of Thorns and Roses",
-    "review": "I didnt know Feyre was 19 and had to hunt for her family for food. So young....",
+    "review": "I\u0027m considering if it will be worth it to read this",
     "rating": 3,
     "genre": "Romance",
-    "stageOfReading": "3"
+    "stageOfReading": "Want to Read"
   },
   {
-    "id": -4003229665372039873,
-    "bookTitle": "rose",
-    "review": "",
-    "rating": 0,
-    "genre": "romance",
-    "stageOfReading": "2"
+    "id": -9153421570087441566,
+    "bookTitle": "Rose",
+    "review": "Love roses",
+    "rating": 2,
+    "genre": "Flowers",
+    "stageOfReading": "Haven\u0027t Considered"
   },
   {
-    "id": -6453665110322446048,
+    "id": 3644287907447335917,
     "bookTitle": "Lord of Rings",
-    "review": "",
+    "review": "Its too long",
     "rating": 1,
     "genre": "Fantasy",
-    "stageOfReading": "1"
+    "stageOfReading": "Haven\u0027t Considered"
   },
   {
-    "id": 1650517855790237051,
+    "id": 2066643349108418512,
     "bookTitle": "Dune",
     "review": "",
     "rating": 0,
     "genre": "Sci-Fi",
-    "stageOfReading": "3"
+    "stageOfReading": "Haven\u0027t Considered"
   },
   {
-    "id": 3040133450039428757,
+    "id": -8266582882266152606,
     "bookTitle": "Java",
-    "review": "Too Boring",
-    "rating": 1,
+    "review": "too boring",
+    "rating": 0,
     "genre": "Non-Fiction",
-    "stageOfReading": "2"
+    "stageOfReading": "Haven\u0027t Considered"
   },
   {
-    "id": -4253470189775093815,
+    "id": -9167717568550065222,
     "bookTitle": "Harry Potter and the Chamber of Secrets",
     "review": "AWESOME!!!!!!",
     "rating": 5,
     "genre": "Fantasy",
-    "stageOfReading": "3"
+    "stageOfReading": "Read"
+  },
+  {
+    "id": -369879047717531912,
+    "bookTitle": "Jungle Book",
+    "review": "Its a kids book",
+    "rating": 2,
+    "genre": "Children book",
+    "stageOfReading": "Haven\u0027t Considered"
+  },
+  {
+    "id": -8618969711514750415,
+    "bookTitle": "Harry Potter and The Chambers Of Secret",
+    "review": "2nd book of Harry Potter series. Awesome",
+    "rating": 5,
+    "genre": "Fantasy",
+    "stageOfReading": "Currently Reading"
   }
 ]

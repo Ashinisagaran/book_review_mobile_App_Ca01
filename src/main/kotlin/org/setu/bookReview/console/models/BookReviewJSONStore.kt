@@ -37,8 +37,10 @@ class BookReviewJSONStore : BookReviewStore {
         return foundBookReview
     }
 
-    //able to display books that are in each stage
-    // look into delete book.... for now it just deletes using the id of the book
+    override fun findStage(stage: String) : List<BookReviewModel> {
+        return bookReviews.filter { p -> p.stageOfReading == stage }
+    }
+
 
     override fun findUsingSpecificName(name: String) : List<BookReviewModel> {
         return bookReviews.filter { p -> p.bookTitle.contains(name) }

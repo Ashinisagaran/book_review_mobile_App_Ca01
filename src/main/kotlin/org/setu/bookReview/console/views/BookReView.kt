@@ -1,7 +1,6 @@
 package org.setu.bookReview.console.views
 
 import org.setu.bookReview.console.models.BookReviewJSONStore
-//import org.setu.bookReview.console.models.BookReviewMemStore
 import org.setu.bookReview.console.models.BookReviewModel
 
 class BookReView {
@@ -18,11 +17,10 @@ class BookReView {
         println(" 3. Update Rating") //for now just rate
         println(" 4. Update Review")
         println(" 5. Top Rated Books") //returns in descending order of the rate
-//        println(" 4. Update Reviews") // only update when they have submitted "currently reading" or "read"
         println(" 6. Bookshelves")
-//        println(" 5. All Genre")
-        println(" 7. Search Book")
-        println(" 8. Delete Books")
+        println(" 7. Search Books by Stage")
+        println(" 8. Search Book")
+        println(" 9. Delete Books")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -42,21 +40,39 @@ class BookReView {
         println(allBooks)
     }
 
-    fun printTableBook(allBooks : List<BookReviewModel>){
-        println(String.format("%10s %25s %25s %60s %25s %10s %25s %10s %25s %10s %25s %60s %20s" , "|" , "Book ID" , "|" , "Book Title" , "|" , "Genre" , "|" , "Stage of Reading" , "|" , "Rating" , "|" , "Review" , "|"))
-        println(String.format("%s" , "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"))
-        for(book in allBooks){
-            println()
-            println(String.format("%10s %25s %25s %60s %25s %10s %25s %15s %25s %10s %25s %60s %20s" , "|" , "${book.id} " , "|" , "${book.bookTitle}" , "|" , "${book.genre}" , "|" , "${book.stageOfReading}" , "|" , "${book.rating}" , "|" , "${book.review}" , "|"))
-            println()
+    fun printTableBook(allBooks : List<BookReviewModel>) {
+        println(
+            String.format(
+                "%10s %25s %25s %60s %25s %10s %25s %10s %25s %10s %25s %60s %20s",
+                "|",
+                "Book ID",
+                "|",
+                "Book Title",
+                "|",
+                "Genre",
+                "|",
+                "Stage of Reading",
+                "|",
+                "Rating",
+                "|",
+                "Review",
+                "|"
+            )
+        )
+        println(
+            String.format(
+                "%s",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            )
+        )
+        for (book in allBooks) {
+            viewBook(book)
         }
     }
 
-    fun showBook(bookReview : BookReviewModel) {
-        if(bookReview != null)
-            println("Book Details [ $bookReview ]")
-        else
-            println("Book Not Found...")
+    fun printStage(allBooks : List<BookReviewModel>, header :String){
+        println(header)
+        printTableBook(allBooks)
     }
 
     fun addBookData(bookReview : BookReviewModel) : Boolean { //
@@ -73,7 +89,8 @@ class BookReView {
         println(" 2. Currently Reading")
         println(" 3. Read")
         println(" 4. Haven't Considered")
-        bookReview.stageOfReading = readLine()!!
+        println(" 5. Nope")
+        bookReview.stageOfReading = convertStage(readLine()!!)
 
         var option : String?
         do {
@@ -91,8 +108,55 @@ class BookReView {
         return bookReview.bookTitle.isNotEmpty() && bookReview.genre.isNotEmpty() && bookReview.stageOfReading.isNotEmpty()
     }
 
-    fun viewAddedBook(bookReview: BookReviewModel){
-        println("Your updated book,  \n Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading: ${bookReview.stageOfReading}, \n Rating: ${bookReview.rating}, \n Review: ${bookReview.review}")
+    fun convertStage(stage:String):String{
+    if(stage=="1") return "Want to Read"
+
+    else if(stage=="2") return "Currently Reading"
+
+    else if(stage=="3") return "Read"
+
+    else if(stage=="4") return "Haven't Considered"
+
+    else if(stage=="5") return "Nope"
+
+    else
+        return "Nope"
+    }
+
+    fun askStageOfReading(): String {
+        println("Which stage of reading would you like to see?")
+        println(" 1. Want to Read")
+        println(" 2. Currently Reading")
+        println(" 3. Read")
+        println(" 4. Haven't Considered")
+        println(" 5. Nope")
+
+        var stageStore = readLine()!!
+        return convertStage(stageStore)
+    }
+
+
+    fun viewBook(book: BookReviewModel) {
+        println()
+        println(
+            String.format(
+                "%10s %25s %25s %60s %25s %10s %25s %15s %25s %10s %25s %60s %20s",
+                "|",
+                "${book.id} ",
+                "|",
+                "${book.bookTitle}",
+                "|",
+                "${book.genre}",
+                "|",
+                "${book.stageOfReading}",
+                "|",
+                "${book.rating}",
+                "|",
+                "${book.review}",
+                "|"
+            )
+        )
+        println()
     }
 
     fun updateBookData(bookReview : BookReviewModel) : Boolean {
@@ -113,6 +177,7 @@ class BookReView {
             println(" 2. Currently Reading")
             println(" 3. Read")
             println(" 4. Haven't Considered")
+            println(" 5. Nope")
             tempStageOfReading = readLine()!!
 
             if (!tempBookTitle.isNullOrEmpty() && !tempGenre.isNullOrEmpty() && !tempStageOfReading.isNullOrEmpty()) {
@@ -123,10 +188,6 @@ class BookReView {
             }
         }
         return false
-    }
-
-    fun viewUpdatedBook(bookReview: BookReviewModel){
-        println("Your updated book,  \n Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading:${bookReview.stageOfReading}")
     }
 
     fun addRatingForBook(bookReview : BookReviewModel) : Boolean {
@@ -149,9 +210,34 @@ class BookReView {
 
 
     fun viewRating(bookReview: BookReviewModel){
-        println("Your review  \'${bookReview.rating}\' for \'${bookReview.bookTitle}\', has been added")
+        println(
+            String.format(
+                "%10s %60s %25s %10s %25s",
+                "|",
+                "Book Title",
+                "|",
+                "Rating",
+                "|"
+            )
+        )
+        println(
+            String.format(
+                "%s",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            )
+        )
         println()
-        println(" Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading: ${bookReview.stageOfReading}, \n Rating: ${bookReview.rating}")
+        println(
+            String.format(
+                "%10s %60s %25s %10s %25s",
+                "|",
+                "${bookReview.bookTitle}",
+                "|",
+                "${bookReview.rating}",
+                "|"
+            )
+        )
+        println()
     }
 
     fun addReviewData(bookReview : BookReviewModel) : Boolean {
@@ -164,14 +250,33 @@ class BookReView {
     }
 
     fun viewReview(bookReview: BookReviewModel){
-        println("Your review  \'${bookReview.review}\' for \'${bookReview.bookTitle}\', has been added")
+        println(
+            String.format(
+                "%10s %60s %25s %10s %25s",
+                "|",
+                "Book Title",
+                "|",
+                "Review",
+                "|"
+            )
+        )
+        println(
+            String.format(
+                "%s",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            )
+        )
         println()
-        println(" Book Title: ${bookReview.bookTitle}, \n Genre: ${bookReview.genre}, \n Stage of Reading: ${bookReview.stageOfReading}, \n Rating: ${bookReview.rating}, \n Review: ${bookReview.review}")
-    }
-
-    fun viewSearchedBook(bookReview: BookReviewModel){
-        println()
-        println(" Book ID: ${bookReview.id} \n Book Title: ${bookReview.bookTitle} \n Genre: ${bookReview.genre} \n Stage of Reading: ${bookReview.stageOfReading} \n Rating: ${bookReview.rating} \n Review: ${bookReview.review}")
+        println(
+            String.format(
+                "%10s %60s %25s %10s %25s",
+                "|",
+                "${bookReview.bookTitle}",
+                "|",
+                "${bookReview.review}",
+                "|"
+            )
+        )
         println()
     }
 

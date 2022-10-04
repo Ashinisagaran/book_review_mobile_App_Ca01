@@ -2,19 +2,16 @@ package org.setu.bookReview.console.controllers
 
 import mu.KotlinLogging
 import org.setu.bookReview.console.models.BookReviewJSONStore
-//import org.setu.placemark.console.models.BookReviewMemStore
 import org.setu.bookReview.console.models.BookReviewModel
 import org.setu.bookReview.console.views.BookReView
 
 class BookReviewController {
 
-    //    val placemarks = PlacemarkMemStore()
     val bookReviews = BookReviewJSONStore()
     val bookReView = BookReView()
     val logger = KotlinLogging.logger {}
 
     init {
-//        logger.info { "Launching Book Review Console App" }
         println("Welcome to Book Review Kotlin App Version 1.0 by Ashini Sagaran")
     }
 
@@ -31,15 +28,15 @@ class BookReviewController {
                 4 -> review()
                 5 -> sortRating(bookReviews)
                 6 -> bookShelves()
-                7 -> searchSpecificBook()
-                8 -> deleteBook()
+                7 -> stageOfReading()
+                8 -> searchSpecificBook()
+                9 -> deleteBook()
                 -99 -> dummyData()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
             }
             println()
         } while (input != -1)
-//        logger.info { "Shutting Down Book Review Console App" }
     }
 
     fun menu() :Int { return bookReView.menu() }
@@ -50,11 +47,8 @@ class BookReviewController {
         if(aBookReview != null) {
             if (bookReView.addBookData(aBookReview)) {
                 bookReviews.create(aBookReview)
-                bookReView.viewAddedBook(aBookReview)
-//                logger.info("Successfully Added")
+                bookReView.viewBook(aBookReview)
             }
-//            else
-//                logger.info("Not Successfully Added")
         }
         else
             println("Book Not Added...")
@@ -72,33 +66,13 @@ class BookReviewController {
         if(aBookReview != null) {
             if(bookReView.updateBookData(aBookReview)) {
                 bookReviews.update(aBookReview)
-                bookReView.viewUpdatedBook(aBookReview)
-//                logger.info("Successfully Updated")
+                bookReView.viewBook(aBookReview)
             }
-//            else
-//                logger.info("Not Successfully Updated")
         }
         else
             println("Book Review Not Updated...")
     }
 
-//    fun stageOfReading() {
-//        var stageOfReading: Int
-//
-//        do {
-//            stageOfReading = menu()
-//            when(stageOfReading) {
-//                1 -> wantToRead()
-//                2 -> currentlyReading()
-//                3 -> rate()
-//                4 -> bookShelves()
-//                else -> println("Invalid Option")
-//            }
-//            println()
-//        } while (stageOfReading != -1)
-//        logger.info { "Shutting Down Book Review Console App" }
-//    }
-//    }
 
     fun rate() {
 
@@ -110,33 +84,12 @@ class BookReviewController {
             if(bookReView.addRatingForBook(aBookReview)) {
                 bookReviews.rate(aBookReview)
                 bookReView.viewRating(aBookReview)
-//                logger.info("Successfully Added Rating of Book")
             }
-//            else
-//                logger.info("Not Successfully Added Rating of Book")
         }
         else
             println("Book Not Rated...")
 
     }
-
-//    fun updateRate() {
-//        bookReView.listBooks(bookReviews)
-//        val searchName = bookReView.getName()
-//        val aBookReview = searchName(searchName)
-//
-//        if(aBookReview != null) {
-//            if(bookReView.updateBookData(aBookReview)) {
-//                bookReviews.update(aBookReview)
-//                bookReView.viewUpdatedBook(aBookReview)
-//                logger.info("Book Review Updated : [ $aBookReview ]")
-//            }
-//            else
-//                logger.info("Book Review Not Updated")
-//        }
-//        else
-//            println("Book Review Not Updated...")
-//    }
 
 
     fun sortRating(bookReviews : BookReviewJSONStore) {
@@ -165,10 +118,7 @@ class BookReviewController {
             if(bookReView.addReviewData(aBookReview)) {
                 bookReviews.review(aBookReview)
                 bookReView.viewReview(aBookReview)
-//                logger.info("Successfully Added Review of Book")
             }
-//            else
-//                logger.info("Not Successfully Added Review of Book")
         }
         else
             println("Book Not Reviewed...")
@@ -189,14 +139,20 @@ class BookReviewController {
             println("Book Not Deleted...")
     }
 
-    fun searchBook() { //needed for menu
-        bookReView.listBooks(bookReviews)
-        val aBookReview = searchName(bookReView.getName())!!
-        bookReView.viewSearchedBook(aBookReview)
+    fun stageOfReading() {
+        val theStage = bookReView.askStageOfReading()
+        val aBookReview = searchStage(theStage)!!
+        bookReView.printStage(aBookReview, "The following is all the books at the requested stage: ${theStage}")
+    }
+
+
+
+    fun searchStage(stage: String): List<BookReviewModel>{
+       val foundStage = bookReviews.findStage(stage)
+        return foundStage
     }
 
     fun searchSpecificBook() {
-        bookReView.listBooks(bookReviews)
         val aBookReview = searchSpecificName(bookReView.getName())!!
         bookReView.printTableBook(aBookReview)
     }
@@ -213,8 +169,8 @@ class BookReviewController {
     }
 
     fun search(id: Long) : BookReviewModel? {
-        val foundPlacemark = bookReviews.findOne(id)
-        return foundPlacemark
+        val foundBookReview = bookReviews.findOne(id)
+        return foundBookReview
     }
 
     fun dummyData() {
