@@ -99,9 +99,34 @@ class BookReviewController {
             println()
             var sortRate = bookReviews.sortRating()
             //print the list in a loop
+        println(
+            String.format(
+                "%10s %60s %25s %10s %25s",
+                "|",
+                "Book Title",
+                "|",
+                "Rating",
+                "|"
+            )
+        )
+        println(
+            String.format(
+                "%s",
+                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+            )
+        )
             for(topRated in sortRate){
-                println("Book Title: ${topRated.bookTitle}")
-                println("Rating: ${topRated.rating}")
+                println()
+                println(
+                    String.format(
+                        "%10s %60s %25s %10s %25s",
+                        "|",
+                        "${topRated.bookTitle}",
+                        "|",
+                        "${topRated.rating}",
+                        "|"
+                    )
+                )
                 println()
             }
             println(sortRate)

@@ -170,7 +170,7 @@ class BookReView {
         val tempStageOfReading: String?
 
         if (bookReview != null) {
-            print("Enter the book name to be updated: ")
+            print("Enter the new book's name to be updated: ")
             tempBookTitle = readLine()!!
 
             print("Enter the genre of the book to be updated: ")
@@ -182,7 +182,7 @@ class BookReView {
             println(" 3. Read")
             println(" 4. Haven't Considered")
             println(" 5. Nope")
-            tempStageOfReading = readLine()!!
+            tempStageOfReading = convertStage(readLine()!!)
 
             if (!tempBookTitle.isNullOrEmpty() && !tempGenre.isNullOrEmpty() && !tempStageOfReading.isNullOrEmpty()) {
                 bookReview.bookTitle = tempBookTitle
