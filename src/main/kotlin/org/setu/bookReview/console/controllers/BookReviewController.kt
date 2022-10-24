@@ -211,8 +211,8 @@ class BookReviewController {
     }
 
     fun dummyData() {
-        bookReviews.create(BookReviewModel(bookTitle = "New York New York", review = "So Good They Named It Twice"))
-        bookReviews.create(BookReviewModel(bookTitle= "Ring of Kerry", review = "Some place in the Kingdom"))
-        bookReviews.create(BookReviewModel(bookTitle = "Waterford City", review = "You get great Blaas Here!!"))
+        bookReviews.create(BookReviewModel(bookTitle = "Harry Potter", genre = "Fantasy", stageOfReading = "Want to Read", rating = 0, review = "Perfect book" ))
+        bookReviews.create(BookReviewModel(bookTitle = "Cinderella ", genre = "Fairy-tales", stageOfReading = "Read", rating = 5, review = "Awesome" ))
+        
     }
 }
